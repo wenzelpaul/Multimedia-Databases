@@ -1,0 +1,59 @@
+- copy everything to oracle db vm
+- execute lire-server-1.0.jar found in LireServer/target/ (built via maven)
+- execute frontend.jar found in Frontend/target/ (built via maven)
+
+- execute following cmds to load jars into db (replace <path> with path to file):
+(json-20180130.jar and Database.jar are located in Database/classes/artifacts/Database_jar (artifacts built via Intellij))
+
+${ORACLE_HOME}/bin/loadjava -resolve ${ORACLE_HOME}/rdbms/jlib/CartridgeServices.jar -user system/oracle@localhost:1521:orcl12c;
+${ORACLE_HOME}/bin/loadjava -resolve ${ORACLE_HOME}/rdbms/jlib/ODCI.jar -user system/oracle@localhost:1521:orcl12c;
+
+${ORACLE_HOME}/bin/loadjava -resolve <path>/json-20180130.jar -user system/oracle@localhost:1521:orcl12c;
+${ORACLE_HOME}/bin/loadjava -resolve <path>/Database.jar -user system/oracle@localhost:1521:orcl12c;
+
+ -execute following cmd to load sql file into db (replace <path> with path to file)
+(index.sql and grant_permissions.sql is found in folder sql)
+
+sqlplus system/oracle@orcl12c @<path>/grant_permissions.sql;
+sqlplus system/oracle@orcl12c @<path>/index.sql;
+
+- to load images into the database execute the ImageImporter.jar found in ImageImporter/classes/artifacts/ImageImporter_jar(artifact built via Intellij) (replace <path> with path to image folder)
+ java -jar ImageImporter.jar <path>
+
+
+- open SQL Developer and execute following queries:
+
+CREATE TABLE "IMG_TABLE" ( "COLUMN1" BFILE );
+
+INSERT INTO "IMG_TABLE" SELECT IMAGE FROM IMAGES;
+
+CREATE INDEX "LIRE" ON "IMG_TABLE" ("COLUMN1")
+INDEXTYPE IS "LIREINDEXTYPE" ;
+
+- wait while index is being built
+- Open Browser and navigate to localhost:9010 to access the frontend
+
+--Done
+
+
+
+
+
+
+
+
+Intellij Artifact instructions for Database.jar:
+(for dependencies, add lib folder and json from maven)
+- Add artifact -> JAR -> from module with dependencies..
+- select Database, no main class
+- select copy to output directory and link via manifest
+- klick OK
+- remove lib, so only json remains
+
+Intellij Artifact instructions for ImageImporter.jar:
+(for dependencies, add lib folder)
+- Add artifact -> JAR -> from module with dependencies..
+- select ImageImporter, main class is ImageImporter
+- leave extract to the target jar
+- klick OK
+

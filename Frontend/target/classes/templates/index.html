@@ -1,0 +1,114 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imaginator</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-7">
+            <h1 id="title">Imaginator</h1>
+        </div>
+        <div class="col-lg-4 pull-right">
+            <img id="logo" th:src="@{/img/uni.jpg}" class="img-responsive" alt="Universität Passau">
+        </div>
+    </div> 
+    <div class="row">
+        <hr id="line">
+    </div>
+    <div class="row">
+        <div class="col-lg-12 center-block">
+            <form class="form-horizontal container center-block" th:action="@{/search}" method="post" enctype="multipart/form-data">
+                    <div class="input-group center-block">
+                        <div th:if="${#httpServletRequest.requestURI == '/search'}">
+                            <img th:src="@{/searchImage(searchFile=${searchImage})}" class="img-responsive search-image" alt="Picture">
+                        </div>
+                        <div th:if="${#httpServletRequest.requestURI == '/'}">
+                            <img th:src="@{/img/noimage.png}" class="img-responsive search-image" alt="Picture">
+                        </div>
+                        <input id="upload" class="form-control-file center-block" type="file" name="file" required="required">
+                        <span class="input-group-btn text-center">
+                            <button id="search" type="submit" class="btn">UPLOAD & SEARCH</button>
+                         </span>
+                    </div>
+            </form>
+            <hr id="line2">
+         </div>
+    </div>
+
+    <div class="container" id="similarImages">
+
+        <!--/*@thymesVar id="rowids" type="java.util.List<String>"*/-->
+        <div class="row" th:if="${rowids}">
+            <div class="col-lg-4">
+                <img id="image1" th:src="@{/image(id=${rowids[0]})}" class="img-responsive searchImages" alt="Picture">
+                <p id="percentage1" class="searchPercentages" th:text="${scores[0]}" th:alt="score1">
+            </div>
+            <div class="col-lg-4">
+                <img id="image2" th:src="@{/image(id=${rowids[1]})}" class="img-responsive searchImages" alt="Picture">
+                <p id="percentage2" class="searchPercentages" th:text="${scores[1]}" th:alt="score2">
+            </div>
+            <div class="col-lg-4">
+                <img id="image3" th:src="@{/image(id=${rowids[2]})}" class="img-responsive searchImages" alt="Picture">
+                <p id="percentage3" class="searchPercentages" th:text="${scores[2]}" th:alt="score3">
+            </div>
+        </div>
+        <div class="row" th:if="${rowids}">
+        <div class="col-lg-4">
+                <img id="image4" th:src="@{/image(id=${rowids[3]})}" class="img-responsive searchImages" alt="Picture">
+            <p id="percentage4" class="searchPercentages" th:text="${scores[3]}" th:alt="score4">
+            </div>
+            <div class="col-lg-4">
+                <img id="image5" th:src="@{/image(id=${rowids[4]})}" class="img-responsive searchImages" alt="Picture">
+                <p id="percentage5" class="searchPercentages" th:text="${scores[4]}" th:alt="score5">
+            </div>
+            <div class="col-lg-4">
+                <img id="image6" th:src="@{/image(id=${rowids[5]})}" class="img-responsive searchImages" alt="Picture">
+                <p id="percentage6" class="searchPercentages" th:text="${scores[5]}" th:alt="score6">
+            </div>
+        </div>
+        <div class="row" th:if="${rowids}">
+        <div class="col-lg-4">
+                <img id="image7" th:src="@{/image(id=${rowids[6]})}" class="img-responsive searchImages" alt="Picture">
+            <p id="percentage7" class="searchPercentages" th:text="${scores[6]}" th:alt="score6">
+            </div>
+            <div class="col-lg-4">
+                <img id="image8" th:src="@{/image(id=${rowids[7]})}" class="img-responsive searchImages" alt="Picture">
+                <p id="percentage8" class="searchPercentages" th:text="${scores[7]}" th:alt="score6">
+            </div>
+            <div class="col-lg-4">
+                <img id="image9" th:src="@{/image(id=${rowids[8]})}" class="img-responsive searchImages" alt="Picture">
+                <p id="percentage9" class="searchPercentages" th:text="${scores[8]}" th:alt="score6">
+            </div>
+        </div>
+        <div class="row" th:if="${rowids}">
+        <div class="col-lg-4">
+                <img id="image10" th:src="@{/image(id=${rowids[9]})}" class="img-responsive searchImages" alt="Picture">
+            <p id="percentage10" class="searchPercentages" th:text="${scores[9]}" th:alt="score6">
+            </div>
+            <div class="col-lg-4">
+                <img id="image11" th:src="@{/image(id=${rowids[10]})}" class="img-responsive searchImages" alt="Picture">
+                <p id="percentage11" class="searchPercentages" th:text="${scores[10]}" th:alt="score6">
+            </div>
+            <div class="col-lg-4">
+                <img id="image12" th:src="@{/image(id=${rowids[11]})}" class="img-responsive searchImages" alt="Picture">
+                <p id="percentage12" class="searchPercentages" th:text="${scores[11]}" th:alt="score6">
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

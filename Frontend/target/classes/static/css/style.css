@@ -1,0 +1,53 @@
+body {
+    padding: 2%;
+}
+
+.row {
+    margin: 1%;
+}
+
+.searchImages {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.searchPercentages {
+    text-align: center;
+}
+
+.search-image {
+    width: 15%;
+    margin: 0 auto;
+}
+
+#logo {
+    width: 80%;
+}
+
+#line {
+    display: block;
+    height: 5px;
+    border-color: gray;
+}
+
+
+#line2 {
+    display: block;
+    height: 5px;
+    width: 50%;
+    border-color: darkorange;
+}
+
+#title {
+    color: darkorange;
+    font-size: 300%;
+}
+
+#upload {
+    margin-top: 1%;
+}
+
+#search {
+    margin-top: 1%;
+}
+	

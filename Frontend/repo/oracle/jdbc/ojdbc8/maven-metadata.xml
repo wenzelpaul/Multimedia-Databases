@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>oracle.jdbc</groupId>
+  <artifactId>ojdbc8</artifactId>
+  <versioning>
+    <release>12c</release>
+    <versions>
+      <version>12c</version>
+    </versions>
+    <lastUpdated>20170627162720</lastUpdated>
+  </versioning>
+</metadata>
